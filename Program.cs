@@ -18,6 +18,7 @@ do
   // display choices to user
   Console.WriteLine("1) Add Movie");
   Console.WriteLine("2) Display All Movies");
+  Console.WriteLine("3) Find Movie");
   Console.WriteLine("Enter to quit");
   // input selection
   choice = Console.ReadLine();
@@ -81,6 +82,19 @@ do
     foreach(Movie m in movieFile.Movies)
     {
       Console.WriteLine(m.Display());
+    }
+  }
+
+  else if (choice == "3")
+  {
+    Console.Write("Enter the name of the movie: ");
+    string movieChoice = Console.ReadLine();
+
+    var titles = movieFile.Movies.Where(m => m.title.Contains(movieChoice)).Select(m => m.title);
+    Console.WriteLine($"There are {titles.Count()} movies with that title");
+    foreach (string t in titles)
+    {
+      Console.WriteLine($" {t}");
     }
   }
 } while (choice == "1" || choice == "2");
